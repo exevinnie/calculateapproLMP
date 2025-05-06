@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDD to LMP Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            font-size: 14px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .output {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>EDD to LMP Calculator</h1>
+    <label for="edd">Enter Estimated Due Date (EDD):</label>
+    <input type="date" id="edd" required>
+    <button onclick="calculateLMP()">Calculate LMP</button>
+
+    <div class="output" id="output"></div>
+</div>
+
+<script>
+    function calculateLMP() {
+        // Get the input EDD date
+        let eddInput = document.getElementById("edd").value;
+        
+        if (!eddInput) {
+            document.getElementById("output").innerHTML = "Please enter a valid EDD date.";
+            return;
+        }
+
+        // Convert EDD input to a Date object
+        let eddDate = new Date(eddInput);
+
+        // Subtract 280 days (in milliseconds) to calculate LMP
+        let lmpDate = new Date(eddDate);
+        lmpDate.setDate(eddDate.getDate() - 280); // 280 days
+
+        // Format LMP date to YYYY-MM-DD
+        let lmpFormatted = lmpDate.toISOString().split('T')[0];
+
+        // Display the result
+        document.getElementById("output").innerHTML = Approximated Last Menstrual Period (LMP): ${lmpFormatted};
+    }
+</script>
+
+</body>
+</html>
